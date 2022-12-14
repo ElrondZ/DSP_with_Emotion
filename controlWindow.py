@@ -1,7 +1,7 @@
 import tkinter
 from tkinter import *
 from PIL import ImageTk, Image
-import video_emotionRecognition
+import video_emotionRecognition_control
 
 root = Tk()
 root.title('Digital Signal Processing Final Project')
@@ -26,7 +26,7 @@ text_author = Label(root, text='Zihan Zeng(zz3361) && Runfeng Gai(rg4153)',
 
 
 def openVideoEmotionRecognition():
-    my_emotion_recognition = video_emotionRecognition.EmotionRecognition_Video()
+    my_emotion_recognition = video_emotionRecognition_control.EmotionRecognition_Video()
     my_emotion_recognition.face_and_emotion_recognition()
 
 
