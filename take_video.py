@@ -12,5 +12,6 @@ root.title("Video Motio Recognition")
 # 大小
 root.minsize(800, 1000)
 # 开始按钮
-Start = tk.Button(root, text='Start', command=video_motio_recognition())
+start = tk.Button(root, text='Start', command=video_motio_recognition())
+start.pack()
 root.mainloop()

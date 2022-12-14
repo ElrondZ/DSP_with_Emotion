@@ -12,5 +12,6 @@ root.title("audio")
 # 大小
 root.minsize(800, 1000)
 # 开始按钮
-Start = tk.Button(root, text='Start', command=take_audio())
+start = tk.Button(root, text='Start', command=take_audio())
+start.pack()
 root.mainloop()
