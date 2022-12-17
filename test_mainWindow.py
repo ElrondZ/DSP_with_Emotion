@@ -1,6 +1,7 @@
 import tkinter
 from tkinter import *
 import tkinter as tk
+import audio_test
 
 root = Tk()
 root.title('Digital Signal Processing Final Project')
@@ -28,12 +29,18 @@ def on_button_click(self):
     new_window = tk.Toplevel(self)
     new_window.title('Audio Emotion Recognition')
     new_window.geometry('600x400')
+    filename = "record_a_sound.wav"
+    filepath = "./" + filename
 
-    button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1)
-    button_waveform = tk.Button(new_window, text='Generate Wave Form', font=('Roman', 20), width=30, height=1)
-    button_spectrogram = tk.Button(new_window, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1)
+    button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1,
+                                 command=lambda: audio_test.record_sound(filename))
+    button_waveform = tk.Button(new_window, text='Generate Wave Form', font=('Roman', 20), width=30, height=1,
+                                command=lambda: audio_test.displayWaveform(filepath))
+    button_spectrogram = tk.Button(new_window, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1,
+                                   command=lambda: audio_test.displaySpectrogram(filepath))
     button_emotionResult = tk.Button(new_window, text='Generate Emotion Recognition Result', font=('Roman', 20), width=30,
-                                     height=1)
+                                     height=1, command=lambda: audio_test.displayEmotionResult())
+
     button_recording.place(relx=0.17, rely=0.57)
     button_waveform.place(relx=0.17, rely=0.67)
     button_spectrogram.place(relx=0.17, rely=0.77)

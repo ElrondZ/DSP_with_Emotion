@@ -1,10 +1,10 @@
 import tkinter as tk
 from tkinter import messagebox
-import librosa
-import matplotlib
-import matplotlib.pyplot as plt
+# import librosa
+# import matplotlib
+# import matplotlib.pyplot as plt
 import numpy as np
-from PIL import ImageTk, Image
+# from PIL import ImageTk, Image
 import pyaudio
 import wave
 
@@ -39,7 +39,7 @@ def record_sound(filename):
 
 
 # Using librosa to generate waveform and display
-def displayWaveform(filepath):
+def displayWaveform():
     ################# 这个地方写的是用来读取静态文件然后显示波形图，你得改成录音完之后，直接传过来导入这个函数里面，下面那个函数一样
     samples, sr = librosa.load(r'your wav file path', sr=16000)
 
@@ -54,7 +54,7 @@ def displayWaveform(filepath):
 
 
 # Using librosa to generate spectrogram and display
-def displaySpectrogram(filepath):
+def displaySpectrogram():
     x, sr = librosa.load(r'your wav file path', sr=16000)
 
     spectrogram = librosa.amplitude_to_db(librosa.stft(x))
@@ -76,11 +76,5 @@ def displayEmotionResult():
 ################# 你可以用这个messagebox解决跳出信息的问题，比如没有录音直接点击查看图，就会跳出请录音
 def showMessageBox(myMessage):
     messagebox.showinfo(myMessage)
-
-
-
-
-
-
 
 

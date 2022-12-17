@@ -3,6 +3,7 @@ from tkinter import *
 from PIL import ImageTk, Image
 import video_emotionRecognition_control
 import tkinter as tk
+import audio_emotionRecognition_control
 
 root = Tk()
 root.title('Digital Signal Processing Final Project')
@@ -35,17 +36,30 @@ def on_button_click(self):
     new_window = tk.Toplevel(self)
     new_window.title('Audio Emotion Recognition')
     new_window.geometry('600x400')
+    # Set Somponents
+    get_title_image = Image.open("./UI_Resources/emotion.jpg")
+    title_img = ImageTk.PhotoImage(get_title_image)
+    my_title_image = tk.Label(new_window, image=title_img)
 
-    button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1)
-    button_waveform = tk.Button(new_window, text='Generate Wave Form', font=('Roman', 20), width=30, height=1)
-    button_spectrogram = tk.Button(new_window, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1)
-    button_emotionResult = tk.Button(new_window, text='Generate Emotion Recognition Result', font=('Roman', 20), width=30,
-                                     height=1)
+    filename = "record_a_sound.wav"
+    filepath = "./" + filename
+
+    button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1,
+                                 command=lambda: audio_emotionRecognition_control.record_sound(filename))
+    button_waveform = tk.Button(new_window, text='Generate Wave Form', font=('Roman', 20), width=30, height=1,
+                                command=lambda: audio_emotionRecognition_control.displayWaveform(filepath))
+    button_spectrogram = tk.Button(new_window, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1,
+                                   command=lambda: audio_emotionRecognition_control.displaySpectrogram(filepath))
+    button_emotionResult = tk.Button(new_window, text='Generate Emotion Recognition Result', font=('Roman', 20),
+                                     width=30,
+                                     height=1, command=lambda: audio_emotionRecognition_control.displayEmotionResult())
+
     button_recording.place(relx=0.17, rely=0.57)
     button_waveform.place(relx=0.17, rely=0.67)
     button_spectrogram.place(relx=0.17, rely=0.77)
     button_emotionResult.place(relx=0.17, rely=0.87)
 
+    my_title_image.pack()
     root.mainloop()
 
 button_video = Button(root, text='Video Emotion Recognition', font=('Roman', 20), command=lambda:openVideoEmotionRecognition())
