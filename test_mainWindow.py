@@ -1,16 +1,10 @@
 import tkinter
 from tkinter import *
-from PIL import ImageTk, Image
-import video_emotionRecognition_control
 import tkinter as tk
 
 root = Tk()
 root.title('Digital Signal Processing Final Project')
 root.geometry('1200x600')
-
-get_logo_image = Image.open("./UI_Resources/logo.png")
-logo_img = ImageTk.PhotoImage(get_logo_image)
-logo = tkinter.Label(root, image=logo_img)
 
 text_subjectTitle = Label(root, text='\nEmotion Recognition\n based on Video and Audio',
                           fg='black',
@@ -27,8 +21,7 @@ text_author = Label(root, text='Zihan Zeng(zz3361) && Runfeng Gai(rg4153)',
 
 
 def openVideoEmotionRecognition():
-    my_emotion_recognition = video_emotionRecognition_control.EmotionRecognition_Video()
-    my_emotion_recognition.face_and_emotion_recognition()
+    print("haha")
 
 
 def on_button_click(self):
@@ -48,12 +41,12 @@ def on_button_click(self):
 
     root.mainloop()
 
+
 button_video = Button(root, text='Video Emotion Recognition', font=('Roman', 20), command=lambda:openVideoEmotionRecognition())
 button_audio = Button(root, text='Audio Emotion Recognition', font=('Roman', 20), command=lambda:on_button_click(root))
 
 button_video.place(relx=0.15, rely=0.7, relwidth=0.23, relheight=0.1)
 button_audio.place(relx=0.65, rely=0.7, relwidth=0.23, relheight=0.1)
-logo.pack()
 text_subjectTitle.pack()
 text_author.pack()
 root.mainloop()
