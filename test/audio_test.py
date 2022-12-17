@@ -1,10 +1,9 @@
-import tkinter as tk
 from tkinter import messagebox
-# import librosa
-# import matplotlib
-# import matplotlib.pyplot as plt
+import librosa
+import matplotlib
+import matplotlib.pyplot as plt
 import numpy as np
-# from PIL import ImageTk, Image
+from PIL import ImageTk, Image
 import pyaudio
 import wave
 

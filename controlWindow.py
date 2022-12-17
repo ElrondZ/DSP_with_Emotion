@@ -4,6 +4,11 @@ from PIL import ImageTk, Image
 import video_emotionRecognition_control
 import tkinter as tk
 import audio_emotionRecognition_control
+import matplotlib as mpl
+from tkinter import Tk, Frame
+
+mpl.use('MacOSX')
+
 
 root = Tk()
 root.title('Digital Signal Processing Final Project')
@@ -47,9 +52,9 @@ def on_button_click(self):
     button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1,
                                  command=lambda: audio_emotionRecognition_control.record_sound(filename))
     button_waveform = tk.Button(new_window, text='Generate Wave Form', font=('Roman', 20), width=30, height=1,
-                                command=lambda: audio_emotionRecognition_control.displayWaveform(filepath))
+                                command=lambda: audio_emotionRecognition_control.displayWaveform(filepath, new_window))
     button_spectrogram = tk.Button(new_window, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1,
-                                   command=lambda: audio_emotionRecognition_control.displaySpectrogram(filepath))
+                                   command=lambda: audio_emotionRecognition_control.displaySpectrogram(filepath, new_window))
     button_emotionResult = tk.Button(new_window, text='Generate Emotion Recognition Result', font=('Roman', 20),
                                      width=30,
                                      height=1, command=lambda: audio_emotionRecognition_control.displayEmotionResult())

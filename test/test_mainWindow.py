@@ -1,4 +1,3 @@
-import tkinter
 from tkinter import *
 import tkinter as tk
 import audio_test
@@ -29,7 +28,7 @@ def on_button_click(self):
     new_window = tk.Toplevel(self)
     new_window.title('Audio Emotion Recognition')
     new_window.geometry('600x400')
-    filename = "record_a_sound.wav"
+    filename = "../record_a_sound.wav"
     filepath = "./" + filename
 
     button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1,
