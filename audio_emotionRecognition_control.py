@@ -5,6 +5,8 @@ import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import ImageTk, Image
+import pyaudio
+import wave
 
 
 # wrng GRF，变量名用拼音的？button的文字用中文的？注释用中文的？
@@ -27,7 +29,33 @@ from PIL import ImageTk, Image
 # ndy GRF, 你难道没发现你的变量名跟函数名字是一样的？？？？？？？？？？？？？？？？？？？？？？
 # ndy GRF, 你难道没发现你的变量名跟函数名字是一样的？？？？？？？？？？？？？？？？？？？？？？
 
+def record_sound(filename):
+    chunk = 1024
+    p = pyaudio.PyAudio()
+    stream = p.open(
+        format=pyaudio.paInt16,
+        channels=1,
+        rate=44100,
+        input=True,
+        frames_per_buffer=chunk
+    )
 
+    frames = []
+
+    for i in range(0, 44100 // chunk * 5):
+        data = stream.read(chunk)
+        frames.append(data)
+
+    stream.stop_stream()
+    stream.close()
+    p.terminate()
+
+    wf = wave.open(filename, 'wb')
+    wf.setnchannels(1)
+    wf.setsampwidth(p.get_sample_size(pyaudio.paInt16))
+    wf.setframerate(44100)
+    wf.writeframes(b''.join(frames))
+    wf.close()
 
 
 # Using librosa to generate waveform and display
@@ -58,6 +86,7 @@ def displaySpectrogram():
     plt.ylabel('Frequency(HZ)')
     plt.show()
 
+
 # Using NN Model to generate emotion results
 def displayEmotionResult():
     showMessageBox("Ongoing")
@@ -67,22 +96,6 @@ def displayEmotionResult():
 ################# 你可以用这个messagebox解决跳出信息的问题，比如没有录音直接点击查看图，就会跳出请录音
 def showMessageBox(myMessage):
     messagebox.showinfo(myMessage)
-
-
-def take_audio():
-    print("aaa")
-
-
-def pinpu():
-    print("频谱")
-
-
-def boxingtu():
-    print("波形图")
-
-
-def result():
-    print("情感结果")
 
 
 root = tk.Tk()
@@ -98,13 +111,16 @@ get_title_image = Image.open("./UI_Resources/emotion.jpg")
 title_img = ImageTk.PhotoImage(get_title_image)
 my_title_image = tk.Label(root, image=title_img)
 
-################# 你没有发现只要你运行整个文件，就会直接运行command里的函数吗，前面加lamda: ，就改成了点击才会运行这个函数
-button_recording = tk.Button(root, text='Record Your Voice', font=('Roman', 20), width=30, height=1, command=lambda: take_audio())
+filename = "record_a_sound.wav"
+
+button_recording = tk.Button(root, text='Record Your Voice', font=('Roman', 20), width=30, height=1,
+                             command=lambda: record_sound(filename))
 button_waveform = tk.Button(root, text='Generate Wave Form', font=('Roman', 20), width=30, height=1,
-                     command=lambda: boxingtu())
-button_spectrogram = tk.Button(root, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1, command=lambda: pinpu())
-button_emotionResult = tk.Button(root, text='Generate Emotion Recognition Result', font=('Roman', 20), width=30, height=1,
-                   command=lambda: displayEmotionResult())
+                            command=lambda: displayWaveform(filename))
+button_spectrogram = tk.Button(root, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1,
+                               command=lambda: displaySpectrogram(filename))
+button_emotionResult = tk.Button(root, text='Generate Emotion Recognition Result', font=('Roman', 20), width=30,
+                                 height=1, command=lambda: displayEmotionResult())
 
 # Display Components
 my_title_image.pack()
