@@ -1,20 +1,23 @@
 import tkinter as tk
-from tkinter import messagebox
 import librosa
+import librosa.display
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 from PIL import ImageTk, Image
 import pyaudio
 import wave
-import librosa.display
 import matplotlib as mpl
-from tkinter import Tk, Frame
-
+from tkinter import Tk, Frame, messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
 
 
-def record_sound(filename):
+def record_sound(filename, self):
+    recording = tk.Toplevel(self)
+    recording.geometry('400x200')
+    alert = tk.Label(recording, text='recording ends', fg='black', font=('Courier', 45), width=70, height=3)
+    alert.pack()
+
     chunk = 1024
     p = pyaudio.PyAudio()
     stream = p.open(
@@ -42,6 +45,7 @@ def record_sound(filename):
     wf.writeframes(b''.join(frames))
     wf.close()
 
+    recording.mainloop()
 
 # Using librosa to generate waveform and display
 def displayWaveform(filepath, self):
@@ -93,11 +97,3 @@ def displayEmotionResult():
 ################# 你可以用这个messagebox解决跳出信息的问题，比如没有录音直接点击查看图，就会跳出请录音
 def showMessageBox(myMessage):
     messagebox.showinfo(myMessage)
-
-
-
-
-
-
-
-

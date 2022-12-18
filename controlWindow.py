@@ -50,7 +50,7 @@ def on_button_click(self):
     filepath = "./" + filename
 
     button_recording = tk.Button(new_window, text='Record Your Voice', font=('Roman', 20), width=30, height=1,
-                                 command=lambda: audio_emotionRecognition_control.record_sound(filename))
+                                 command=lambda: audio_emotionRecognition_control.record_sound(filename, new_window))
     button_waveform = tk.Button(new_window, text='Generate Wave Form', font=('Roman', 20), width=30, height=1,
                                 command=lambda: audio_emotionRecognition_control.displayWaveform(filepath, new_window))
     button_spectrogram = tk.Button(new_window, text='Generate Spectrogram', font=('Roman', 20), width=30, height=1,
