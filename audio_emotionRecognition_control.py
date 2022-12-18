@@ -90,8 +90,27 @@ def displaySpectrogram(filepath, self):
 
 # Using NN Model to generate emotion results
 def displayEmotionResult(filepath, self):
+    window_emotion = tk.Toplevel(self)
+    window_emotion.geometry('800x300')
+
     audioModel = pickle.load(file=open("./model/audioModel/audio_MLP_model.pkl", 'rb'))
     testing_sample = audio_emotionRecognition_MLP_modelGenerate.feature_extraction(filepath, mfcc=True, chroma=True, mel=True)
-    #这个testing_result 就是结果
     testing_result = audioModel.predict([testing_sample])
+
+    text_emotion_result_title = tk.Label(window_emotion, text='Your Emotion Result',
+          fg='black',
+          font=('Roman', 45),
+          width=70,
+          height=3,
+          )
+
+    text_emotion_result = tk.Label(window_emotion, text=testing_result,
+                    fg='blue',
+                    font=('Script', 30),
+                    width=50,
+                    height=2,
+                    )
+
+    text_emotion_result_title.pack()
+    text_emotion_result.pack()
 
