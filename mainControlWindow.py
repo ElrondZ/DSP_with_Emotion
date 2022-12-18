@@ -24,12 +24,12 @@ text_subjectTitle = Label(root, text='\nEmotion Recognition\n based on Video and
                           width=70,
                           height=3,
                           )
-text_author = Label(root, text='Zihan Zeng(zz3361) && Runfeng Gai(rg4153)',
-                    fg='black',
-                    font=('Script', 25),
-                    width=50,
-                    height=2,
-                    )
+# text_author = Label(root, text='Zihan Zeng(zz3361) && Runfeng Gai(rg4153)',
+#                     fg='black',
+#                     font=('Script', 25),
+#                     width=50,
+#                     height=2,
+#                     )
 
 
 def openVideoEmotionRecognition():
@@ -74,5 +74,5 @@ button_video.place(relx=0.15, rely=0.7, relwidth=0.23, relheight=0.1)
 button_audio.place(relx=0.65, rely=0.7, relwidth=0.23, relheight=0.1)
 logo.pack()
 text_subjectTitle.pack()
-text_author.pack()
+# text_author.pack()
 root.mainloop()
