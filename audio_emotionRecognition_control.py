@@ -1,15 +1,15 @@
+import pickle
 import tkinter as tk
 import librosa
 import librosa.display
 import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
-from PIL import ImageTk, Image
 import pyaudio
 import wave
-import matplotlib as mpl
 from tkinter import Tk, Frame, messagebox
 from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
+import audio_emotionRecognition_MLP_modelGenerate
 
 
 def record_sound(filename, self):
@@ -89,11 +89,9 @@ def displaySpectrogram(filepath, self):
 
 
 # Using NN Model to generate emotion results
-def displayEmotionResult():
-    showMessageBox("Ongoing")
+def displayEmotionResult(filepath, self):
+    audioModel = pickle.load(file=open("./model/audioModel/audio_MLP_model.pkl", 'rb'))
+    testing_sample = audio_emotionRecognition_MLP_modelGenerate.feature_extraction(filepath, mfcc=True, chroma=True, mel=True)
+    #这个testing_result 就是结果
+    testing_result = audioModel.predict([testing_sample])
 
-
-# Using messagebox to show message in a new window
-################# 你可以用这个messagebox解决跳出信息的问题，比如没有录音直接点击查看图，就会跳出请录音
-def showMessageBox(myMessage):
-    messagebox.showinfo(myMessage)

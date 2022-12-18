@@ -57,7 +57,7 @@ def on_button_click(self):
                                    command=lambda: audio_emotionRecognition_control.displaySpectrogram(filepath, new_window))
     button_emotionResult = tk.Button(new_window, text='Generate Emotion Recognition Result', font=('Roman', 20),
                                      width=30,
-                                     height=1, command=lambda: audio_emotionRecognition_control.displayEmotionResult())
+                                     height=1, command=lambda: audio_emotionRecognition_control.displayEmotionResult(filepath, new_window))
 
     button_recording.place(relx=0.17, rely=0.57)
     button_waveform.place(relx=0.17, rely=0.67)
