@@ -112,6 +112,3 @@ class EmotionRecognition_Video():
         cv2.destroyAllWindows()
 
 
-if __name__ == "__main__":
-    start_testing = EmotionRecognition_Video()
-    start_testing.face_and_emotion_recognition()
