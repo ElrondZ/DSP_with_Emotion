@@ -1,3 +1,10 @@
+'''
+@Project ：Emotion Recognition based on Video and Audio
+@File    ：mainControlWindwo.py
+@Author  ：Zihan Zeng
+@Date    ：12/02/2022
+'''
+
 import tkinter
 from tkinter import *
 from PIL import ImageTk, Image
@@ -7,7 +14,11 @@ import audio_emotionRecognition_control
 import matplotlib as mpl
 from tkinter import Tk, Frame
 
-
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
+''                                                                                                        ''
+''     IMPORTANT : If you are in windows and wanna to run this project, delete the code below            ''
+''                                                                                                        ''
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 mpl.use('MacOSX')
 
 

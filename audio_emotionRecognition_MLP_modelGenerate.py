@@ -1,3 +1,10 @@
+'''
+@Project ：Emotion Recognition based on Video and Audio
+@File    ：audio_emotionRecognition_MLP_modelGenerate.py
+@Author  ：Zihan Zeng
+@Date    ：12/02/2022
+'''
+
 import librosa
 import soundfile
 import os
@@ -14,6 +21,13 @@ chosen_emotions = ['calm', 'happy', 'fearful', 'disgust']
 
 
 def load_dataset(test_size=0.2):
+    '''
+
+    Laod Training Dataset.
+
+    :param test_size:           Size of the Testing Set
+    :return:                    Divided dataset
+    '''
     x, y = [], []
     for file in glob.glob("./AudioDataSet/Actor_*/*.wav"):
         file_name = os.path.basename(file)
@@ -27,6 +41,16 @@ def load_dataset(test_size=0.2):
 
 
 def feature_extraction(file_name, mfcc, chroma, mel):
+    '''
+
+    Extract Features.
+
+    :param file_name:           Name of the file
+    :param mfcc:                Mel frequency cepstral coefficient
+    :param chroma:              12 different pitch levels
+    :param mel:                 Mel Spectrogram Frequency
+    :return:                    Extracted features
+    '''
     with soundfile.SoundFile(file_name) as sound_file:
         mySoundFile = sound_file.read(dtype="float32")
         sample_rate = sound_file.samplerate
@@ -35,6 +59,17 @@ def feature_extraction(file_name, mfcc, chroma, mel):
 
 
 def mfcc_method(mfcc, chroma, mel, sample_rate, mySoundFile):
+    '''
+
+    Mel frequency cepstral coefficient Method.
+
+    :param mfcc:                Mel frequency cepstral coefficient
+    :param chroma:              12 different pitch levels
+    :param mel:                 Mel Spectrogram Frequency
+    :param sample_rate:         The rate of sample
+    :param mySoundFile:         Original Sound File
+    :return:                    Extracted features
+    '''
     if chroma:
         stft = np.abs(librosa.stft(mySoundFile))
     result = np.array([])
@@ -51,6 +86,12 @@ def mfcc_method(mfcc, chroma, mel, sample_rate, mySoundFile):
 
 
 def training_model():
+    '''
+
+    To train the model
+
+    :return:                Trained Model
+    '''
     x_train, x_test, y_train, y_test = load_dataset(test_size=0.2)
 
     model = MLPClassifier(alpha=0.01, batch_size=256, epsilon=1e-08, hidden_layer_sizes=(300,),
@@ -66,6 +107,13 @@ def training_model():
 
 
 def save_model(model):
+    '''
+
+    Saving the model.
+
+    :param model:               Trained Model
+    :return:
+    '''
     filename = 'model/audioModel/audio_MLP_model.pkl'
     pickle.dump(model, open(filename, 'wb'))
 

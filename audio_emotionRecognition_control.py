@@ -1,8 +1,14 @@
+'''
+@Project ：Emotion Recognition based on Video and Audio
+@File    ：audio_emotionRecognition_control.py
+@Author  ：Runfeng Gai
+@Date    ：12/02/2022
+'''
+
 import pickle
 import tkinter as tk
 import librosa
 import librosa.display
-import matplotlib
 import matplotlib.pyplot as plt
 import numpy as np
 import pyaudio
@@ -13,6 +19,14 @@ import audio_emotionRecognition_MLP_modelGenerate
 
 
 def record_sound(filename, self):
+    '''
+
+    Recording the voice.
+
+    :param filename:                The name of the saving file
+    :param self:                    Tkinter
+    :return:
+    '''
     recording = tk.Toplevel(self)
     recording.geometry('400x200')
     alert = tk.Label(recording, text='recording ends', fg='black', font=('Courier', 45), width=70, height=3)
@@ -47,8 +61,15 @@ def record_sound(filename, self):
 
     recording.mainloop()
 
-# Using librosa to generate waveform and display
 def displayWaveform(filepath, self):
+    '''
+
+    Using librosa to generate waveform and display
+
+    :param filepath:                The path of the saving file
+    :param self:                    Tkinter
+    :return:
+    '''
     window_wave = tk.Toplevel(self)
     window_wave.geometry('800x750')
 
@@ -68,8 +89,15 @@ def displayWaveform(filepath, self):
     canvas.get_tk_widget().pack()
 
 
-# Using librosa to generate spectrogram and display
 def displaySpectrogram(filepath, self):
+    '''
+
+    Using librosa to generate spectrogram and display
+
+    :param filepath:                The path of the saving file
+    :param self:                    Tkinter
+    :return:
+    '''
     window_spectrum = tk.Toplevel(self)
     window_spectrum.geometry('800x700')
     frame = Frame(window_spectrum)
@@ -88,8 +116,15 @@ def displaySpectrogram(filepath, self):
     canvas.get_tk_widget().pack()
 
 
-# Using NN Model to generate emotion results
 def displayEmotionResult(filepath, self):
+    '''
+
+    Using NN Model to generate emotion results
+
+    :param filepath:                The path of the saving file
+    :param self:                    Tkinter
+    :return:
+    '''
     window_emotion = tk.Toplevel(self)
     window_emotion.geometry('800x300')
 
